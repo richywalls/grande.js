@@ -239,8 +239,6 @@ directive('grande', function($compile) {
       }
       scope.isurl = false;
       scope.toggleUrl = function() {
-        scope.textMenu.css('top', '150px');
-        scope.textMenu.css('left', '150px');
         //scope.isurl = !scope.isurl;
       };
       scope.menuItems = {
@@ -343,14 +341,12 @@ directive('grande', function($compile) {
       };
 
       //TODO
-      document.onkeydown = function(event) {
-        console.log('document.onkeydown');
+      iElm.bind('keydown', function(event) {
         preprocessKeyDown(event);
-      }
+      });
 
       iElm.bind('keyup', function(event) {
         var sel = window.getSelection();
-        console.log('element.keyup', sel);
         // FF will return sel.anchorNode to be the parentNode when the triggered keyCode is 13
         if (sel.anchorNode && sel.anchorNode.nodeName !== "ARTICLE") {
           triggerNodeAnalysis(event);
